@@ -35,7 +35,6 @@ export default class extends React.Component {
       } else {
         ({ data: result } = await tvApi.showDetail(parsedId));
       }
-      console.log(result);
     } catch {
       this.setState({ error: "영상을 찾을 수 없습니다." });
     } finally {
