@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Helmet from "react-helmet";
@@ -68,7 +67,7 @@ const Overview = styled.p`
   width: 50%;
 `;
 
-const SLink = styled(Link)`
+const SLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
@@ -98,7 +97,7 @@ const More = styled.div`
 
 const Tab = styled.div``;
 
-const List = styled(Link)`
+const List = styled.a`
   display: block;
   margin-bottom: 10px;
   opacity: 0.5;
@@ -231,7 +230,10 @@ const DetailPresenter = ({ result, error, loading }) =>
               <>
                 <Divider>·</Divider>
                 <Item>
-                  <SLink to={`https://www.imdb.com/title/${result.imdb_id}`}>
+                  <SLink
+                    href={`https://www.imdb.com/title/${result.imdb_id}`}
+                    target="blank"
+                  >
                     <img
                       src={require("assets/icon_imdb.svg")}
                       alt="Go IMDb"
@@ -250,7 +252,7 @@ const DetailPresenter = ({ result, error, loading }) =>
                   result.videos.results.map(video => (
                     <List
                       key={video.id}
-                      to={`https://www.youtube.com/watch?v=${video.key}`}
+                      href={`https://www.youtube.com/watch?v=${video.key}`}
                       target="blank"
                     >
                       {video.name}
@@ -282,7 +284,7 @@ const DetailPresenter = ({ result, error, loading }) =>
                   ? result.production_countries.map(country => (
                       <List
                         key={country.id}
-                        to={`https://duckduckgo.com/?q=${country.name}`}
+                        href={`https://duckduckgo.com/?q=${country.name}`}
                         target="blank"
                       >
                         {country.name}
@@ -291,7 +293,7 @@ const DetailPresenter = ({ result, error, loading }) =>
                   : result.origin_country &&
                     result.origin_country.map(country => (
                       <List
-                        to={`https://duckduckgo.com/?q=${country}`}
+                        href={`https://duckduckgo.com/?q=${country}`}
                         target="blank"
                       >
                         {country}
